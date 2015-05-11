@@ -5,6 +5,8 @@ Standalone Android widget for picking a single date from a calendar view.
 
 ![Screenshot](timesSquareScreenshot.png)
 
+Set range customer word
+![Screenshot](http://i.imgur.com/ifFxLZV.png)
 
 Usage
 -----
@@ -41,8 +43,12 @@ The default mode of the view is to have one selectable date.  If you want the us
 select multiple dates or a date range, use the inMode() method:
 
 ```java
+//other mode
 calendar.init(today, nextYear.getTime())
-    .inMode(RANGE);
+    .inMode(SINGLE);
+//Range mode    
+calendar.init(today, nextYear.getTime())
+    .inMode(RANGE).setRangeWord("start","end");
 ```
 
 
