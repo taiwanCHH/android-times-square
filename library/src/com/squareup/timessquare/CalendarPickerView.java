@@ -87,6 +87,7 @@ public class CalendarPickerView extends ListView {
   private int headerTextColor;
   private Typeface titleTypeface;
   private Typeface dateTypeface;
+  private String mStart,mEnd;
 
   private OnDateSelectedListener dateListener;
   private DateSelectableFilter dateConfiguredListener;
@@ -297,6 +298,11 @@ public class CalendarPickerView extends ListView {
 
     public FluentInitializer withHighlightedDates(Collection<Date> dates) {
       highlightDates(dates);
+      return this;
+    }
+    public FluentInitializer setRangeWord(String start,String end){
+      mStart=start;
+      mEnd=end;
       return this;
     }
 
@@ -759,8 +765,13 @@ public class CalendarPickerView extends ListView {
       } else {
         monthView.setDecorators(decorators);
       }
-      monthView.init(months.get(position), cells.get(position), displayOnly, titleTypeface,
-          dateTypeface);
+      if (selectionMode == SelectionMode.RANGE) {
+        monthView.init(months.get(position), cells.get(position), displayOnly, titleTypeface,
+                dateTypeface, mStart, mEnd);
+      } else {
+        monthView.init(months.get(position), cells.get(position), displayOnly, titleTypeface,
+                dateTypeface);
+      }
       return monthView;
     }
   }
